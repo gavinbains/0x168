@@ -198,4 +198,4 @@ def read_input(file):
     print(datetime.now() - startTime)
 
 
-read_input("test_case/input1.txt")
+read_input("test_case/input0.txt")
