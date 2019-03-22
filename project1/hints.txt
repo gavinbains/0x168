@@ -1,0 +1,3 @@
+Heuristic: minimize the # of conflicts and maximize animals captured - you want the # of conflicts to be negative and the number of animals captured to be positive, find a heuristic based on this. 
+
+For DFS: find each configuration and return the one with max animals found, test on n=15 make sure its less than 180s, Make sure you skip columns row and diagaonal when you place cells, try to skip row and columns.
