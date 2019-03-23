@@ -129,12 +129,12 @@ def ab_max_value(state: Node, alpha, beta):
             new_node_list_radiant = state.radiant[:]
             new_node_list_dire = state.dire[:]
             new_node_list_radiant.append(hero)
-            state.pool.remove(hero)
+            new_node_list_pool = state.pool[:]
+            new_node_list_pool.remove(hero)
+
             new_node = Node(new_node_list_radiant, new_node_list_dire, state.pool, state)
             state.add_child(new_node)
             state.advantage = max(state.advantage, ab_min_value(new_node, alpha, beta))
-            state.pool.append(hero)
-            state.pool.sort(key=lambda h: h.id)
             if state.advantage >= beta:
                 return state.advantage
             alpha = max(alpha, state.advantage)
@@ -150,12 +150,12 @@ def ab_min_value(state: Node, alpha, beta):
             new_node_list_radiant = state.radiant[:]
             new_node_list_dire = state.dire[:]
             new_node_list_dire.append(hero)
-            state.pool.remove(hero)
-            new_node = Node(new_node_list_radiant, new_node_list_dire, state.pool, state)
+            new_node_list_pool = state.pool[:]
+            new_node_list_pool.remove(hero)
+
+            new_node = Node(new_node_list_radiant, new_node_list_dire, new_node_list_pool, state)
             state.add_child(new_node)
             state.advantage = min(state.advantage, ab_max_value(new_node, alpha, beta))
-            state.pool.append(hero)
-            state.pool.sort(key=lambda h: h.id)
             if state.advantage <= alpha:
                 return state.advantage
             beta = min(beta, state.advantage)
@@ -198,4 +198,4 @@ def read_input(file):
     print(datetime.now() - startTime)
 
 
-read_input("test_case/input0.txt")
+read_input("test_case/input6.txt")
