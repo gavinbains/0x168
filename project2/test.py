@@ -1,6 +1,5 @@
 import sys
 from datetime import datetime
-import copy
 
 hero_list = []
 
@@ -67,6 +66,7 @@ class Node:
 
 def minimax(state: Node):
     advantage = max_value(state)
+    print("ADVANTAGE IS: ", advantage)
     for elem in state.children:
         if elem.advantage == advantage:
             print(elem.radiant)
@@ -80,9 +80,9 @@ def min_value(state: Node):
         state.advantage = sys.float_info.max
         for hero_index in range(len(state.pool)):
             hero = state.pool.pop(hero_index)
+            # new_node_list_radiant = state.radiant[:]
             new_node_list_dire = state.dire[:]
             new_node_list_dire.append(hero)
-            # new_node_list_radiant = state.radiant[:]
 
             new_node = Node(state.radiant, new_node_list_dire, state.pool, state)
             state.add_child(new_node)
@@ -133,7 +133,6 @@ def ab_max_value(state: Node, alpha, beta):
             state.add_child(new_node)
             state.advantage = max(state.advantage, ab_min_value(new_node, alpha, beta))
             state.pool.insert(hero_index, hero)
-            state.pool.sort(key=lambda x: x.id)
             if state.advantage >= beta:
                 return state.advantage
             alpha = max(alpha, state.advantage)
@@ -148,9 +147,9 @@ def ab_min_value(state: Node, alpha, beta):
         state.advantage = sys.float_info.max
         for hero_index in range(len(state.pool)):
             hero = state.pool.pop(hero_index)
+            # new_node_list_radiant = state.radiant[:]
             new_node_list_dire = state.dire[:]
             new_node_list_dire.append(hero)
-            # new_node_list_radiant = state.radiant[:]
 
             new_node = Node(state.radiant, new_node_list_dire, state.pool, state)
             state.add_child(new_node)
@@ -170,8 +169,8 @@ def read_input(file):
     dire_init = []
     pool_init = []
     total_heroes = f.readline()
-    read_ab = f.readline().rstrip()
-    if read_ab == "ab":
+
+    if f.readline() == "ab":
         ab = True
 
     for x in f:
@@ -199,5 +198,5 @@ def read_input(file):
 
 
 # non-working ab inputs: 2,6
-read_input("test_case/input2.txt")
+read_input("test_case/input9.txt")
 
