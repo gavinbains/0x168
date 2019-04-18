@@ -1,0 +1,134 @@
+[Executed at: Fri Mar 22 15:53:54 PDT 2019]
+
+Warning: The process runtime may have reached the allocated threshold of 540 second(s).
+Programming language: Python
+[ID: 76105.0, ID: 58502.0]
+0:00:00.810790
+Test 0 Passes
+Traceback (most recent call last):
+File "project2cs360s2019.py", line 200, in
+read_input("input.txt")
+File "project2cs360s2019.py", line 196, in read_input
+out.write(minimax(root))
+File "project2cs360s2019.py", line 69, in minimax
+advantage = max_value(state)
+File "project2cs360s2019.py", line 108, in max_value
+state.advantage = max(state.advantage, min_value(new_node))
+File "project2cs360s2019.py", line 90, in min_value
+state.advantage = min(state.advantage, max_value(new_node))
+File "project2cs360s2019.py", line 108, in max_value
+state.advantage = max(state.advantage, min_value(new_node))
+File "project2cs360s2019.py", line 90, in min_value
+state.advantage = min(state.advantage, max_value(new_node))
+File "project2cs360s2019.py", line 108, in max_value
+state.advantage = max(state.advantage, min_value(new_node))
+File "project2cs360s2019.py", line 90, in min_value
+state.advantage = min(state.advantage, max_value(new_node))
+File "project2cs360s2019.py", line 108, in max_value
+state.advantage = max(state.advantage, min_value(new_node))
+File "project2cs360s2019.py", line 90, in min_value
+state.advantage = min(state.advantage, max_value(new_node))
+File "project2cs360s2019.py", line 108, in max_value
+state.advantage = max(state.advantage, min_value(new_node))
+File "project2cs360s2019.py", line 85, in min_value
+new_node_list_dire = state.dire[:]
+MemoryError
+Test 1 Fails
+Traceback (most recent call last):
+File "project2cs360s2019.py", line 200, in
+read_input("input.txt")
+File "project2cs360s2019.py", line 196, in read_input
+out.write(minimax(root))
+File "project2cs360s2019.py", line 69, in minimax
+advantage = max_value(state)
+File "project2cs360s2019.py", line 108, in max_value
+state.advantage = max(state.advantage, min_value(new_node))
+File "project2cs360s2019.py", line 90, in min_value
+state.advantage = min(state.advantage, max_value(new_node))
+File "project2cs360s2019.py", line 108, in max_value
+state.advantage = max(state.advantage, min_value(new_node))
+File "project2cs360s2019.py", line 90, in min_value
+state.advantage = min(state.advantage, max_value(new_node))
+File "project2cs360s2019.py", line 108, in max_value
+state.advantage = max(state.advantage, min_value(new_node))
+File "project2cs360s2019.py", line 90, in min_value
+state.advantage = min(state.advantage, max_value(new_node))
+File "project2cs360s2019.py", line 108, in max_value
+state.advantage = max(state.advantage, min_value(new_node))
+File "project2cs360s2019.py", line 90, in min_value
+state.advantage = min(state.advantage, max_value(new_node))
+File "project2cs360s2019.py", line 108, in max_value
+state.advantage = max(state.advantage, min_value(new_node))
+File "project2cs360s2019.py", line 85, in min_value
+new_node_list_dire = state.dire[:]
+MemoryError
+Test 2 Fails
+[ID: 37401.0, ID: 64301.0, ID: 26604.0]
+0:00:00.726802
+Test 3 Passes
+Traceback (most recent call last):
+File "project2cs360s2019.py", line 200, in
+read_input("input.txt")
+File "project2cs360s2019.py", line 196, in read_input
+out.write(minimax(root))
+File "project2cs360s2019.py", line 69, in minimax
+advantage = max_value(state)
+File "project2cs360s2019.py", line 108, in max_value
+state.advantage = max(state.advantage, min_value(new_node))
+File "project2cs360s2019.py", line 90, in min_value
+state.advantage = min(state.advantage, max_value(new_node))
+File "project2cs360s2019.py", line 108, in max_value
+state.advantage = max(state.advantage, min_value(new_node))
+File "project2cs360s2019.py", line 90, in min_value
+state.advantage = min(state.advantage, max_value(new_node))
+File "project2cs360s2019.py", line 108, in max_value
+state.advantage = max(state.advantage, min_value(new_node))
+File "project2cs360s2019.py", line 90, in min_value
+state.advantage = min(state.advantage, max_value(new_node))
+File "project2cs360s2019.py", line 108, in max_value
+state.advantage = max(state.advantage, min_value(new_node))
+File "project2cs360s2019.py", line 90, in min_value
+state.advantage = min(state.advantage, max_value(new_node))
+File "project2cs360s2019.py", line 102, in max_value
+new_node_list_radiant = state.radiant[:]
+MemoryError
+Test 4 Fails
+[ID: 76105.0, ID: 58502.0]
+0:00:00.809082
+Test 5 Passes
+Traceback (most recent call last):
+File "project2cs360s2019.py", line 200, in
+read_input("input.txt")
+File "project2cs360s2019.py", line 196, in read_input
+out.write(minimax(root))
+File "project2cs360s2019.py", line 69, in minimax
+advantage = max_value(state)
+File "project2cs360s2019.py", line 108, in max_value
+state.advantage = max(state.advantage, min_value(new_node))
+File "project2cs360s2019.py", line 90, in min_value
+state.advantage = min(state.advantage, max_value(new_node))
+File "project2cs360s2019.py", line 108, in max_value
+state.advantage = max(state.advantage, min_value(new_node))
+File "project2cs360s2019.py", line 90, in min_value
+state.advantage = min(state.advantage, max_value(new_node))
+File "project2cs360s2019.py", line 108, in max_value
+state.advantage = max(state.advantage, min_value(new_node))
+File "project2cs360s2019.py", line 90, in min_value
+state.advantage = min(state.advantage, max_value(new_node))
+File "project2cs360s2019.py", line 108, in max_value
+state.advantage = max(state.advantage, min_value(new_node))
+File "project2cs360s2019.py", line 90, in min_value
+state.advantage = min(state.advantage, max_value(new_node))
+File "project2cs360s2019.py", line 108, in max_value
+state.advantage = max(state.advantage, min_value(new_node))
+File "project2cs360s2019.py", line 85, in min_value
+new_node_list_dire = state.dire[:]
+MemoryError
+Test 6 Fails
+[ID: 64302.0, ID: 78201.0, ID: 30905.0]
+0:00:00.724482
+Test 7 Passes
+[ID: 28801.0, ID: 50802.0, ID: 94703.0]
+0:00:09.452174
+Test 8 Passes
+timeout: the monitored command dumped core

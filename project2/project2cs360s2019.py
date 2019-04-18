@@ -1,6 +1,6 @@
-import copy
 import sys
 from datetime import datetime
+import copy
 
 hero_list = []
 
@@ -12,7 +12,6 @@ class Hero:
         self.m_i = attributes[2]  # My Mastery
         self.m_j = attributes[3]  # Opponent Mastery
         self.team = attributes[4]  # 0 = in pool; 1 = my team; 2 = opponent team
-        self.attributes = attributes
 
     def __repr__(self):
         return "ID: " + str(self.id)
@@ -79,18 +78,16 @@ def min_value(state: Node):
         state.calc_advantage()
     else:
         state.advantage = sys.float_info.max
-        for hero in state.pool:
-            # new_node_list_radiant = copy.deepcopy(state.radiant)
-            # new_node_list_dire = copy.deepcopy(state.dire)
-            new_node_list_radiant = state.radiant[:]
+        for hero_index in range(len(state.pool)):
+            hero = state.pool.pop(hero_index)
             new_node_list_dire = state.dire[:]
             new_node_list_dire.append(hero)
-            state.pool.remove(hero)
-            new_node = Node(new_node_list_radiant, new_node_list_dire, state.pool, state)
+            # new_node_list_radiant = state.radiant[:]
+
+            new_node = Node(state.radiant, new_node_list_dire, state.pool, state)
             state.add_child(new_node)
             state.advantage = min(state.advantage, max_value(new_node))
-            state.pool.append(hero)
-            state.pool.sort(key=lambda h: h.id)
+            state.pool.insert(hero_index, hero)
     return state.advantage
 
 
@@ -99,16 +96,16 @@ def max_value(state: Node):
         state.calc_advantage()
     else:
         state.advantage = -sys.float_info.max
-        for hero in state.pool:
+        for hero_index in range(len(state.pool)):
+            hero = state.pool.pop(hero_index)
             new_node_list_radiant = state.radiant[:]
-            new_node_list_dire = state.dire[:]
             new_node_list_radiant.append(hero)
-            state.pool.remove(hero)
-            new_node = Node(new_node_list_radiant, new_node_list_dire, state.pool, state)
+            # new_node_list_dire = state.dire[:]
+
+            new_node = Node(new_node_list_radiant, state.dire, state.pool, state)
             state.add_child(new_node)
             state.advantage = max(state.advantage, min_value(new_node))
-            state.pool.append(hero)
-            state.pool.sort(key=lambda h: h.id)
+            state.pool.insert(hero_index, hero)
     return state.advantage
 
 
@@ -123,18 +120,20 @@ def alpha_beta(state: Node):
 def ab_max_value(state: Node, alpha, beta):
     if len(state.dire) == 5 and len(state.radiant) == 5:
         state.calc_advantage()
+        return state.advantage
     else:
         state.advantage = -sys.float_info.max
-        for hero in state.pool:
+        for hero_index in range(len(state.pool)):
+            hero = state.pool.pop(hero_index)
             new_node_list_radiant = state.radiant[:]
-            new_node_list_dire = state.dire[:]
             new_node_list_radiant.append(hero)
-            state.pool.remove(hero)
-            new_node = Node(new_node_list_radiant, new_node_list_dire, state.pool, state)
+            # new_node_list_dire = state.dire[:]
+
+            new_node = Node(new_node_list_radiant, state.dire, state.pool, state)
             state.add_child(new_node)
             state.advantage = max(state.advantage, ab_min_value(new_node, alpha, beta))
-            state.pool.append(hero)
-            state.pool.sort(key=lambda h: h.id)
+            state.pool.insert(hero_index, hero)
+            state.pool.sort(key=lambda x: x.id)
             if state.advantage >= beta:
                 return state.advantage
             alpha = max(alpha, state.advantage)
@@ -144,18 +143,19 @@ def ab_max_value(state: Node, alpha, beta):
 def ab_min_value(state: Node, alpha, beta):
     if len(state.dire) == 5 and len(state.radiant) == 5:
         state.calc_advantage()
+        return state.advantage
     else:
         state.advantage = sys.float_info.max
-        for hero in state.pool:
-            new_node_list_radiant = state.radiant[:]
+        for hero_index in range(len(state.pool)):
+            hero = state.pool.pop(hero_index)
             new_node_list_dire = state.dire[:]
             new_node_list_dire.append(hero)
-            state.pool.remove(hero)
-            new_node = Node(new_node_list_radiant, new_node_list_dire, state.pool, state)
+            # new_node_list_radiant = state.radiant[:]
+
+            new_node = Node(state.radiant, new_node_list_dire, state.pool, state)
             state.add_child(new_node)
             state.advantage = min(state.advantage, ab_max_value(new_node, alpha, beta))
-            state.pool.append(hero)
-            state.pool.sort(key=lambda h: h.id)
+            state.pool.insert(hero_index, hero)
             if state.advantage <= alpha:
                 return state.advantage
             beta = min(beta, state.advantage)
@@ -170,8 +170,8 @@ def read_input(file):
     dire_init = []
     pool_init = []
     total_heroes = f.readline()
-
-    if f.readline() == "ab":
+    read_ab = f.readline().rstrip()
+    if read_ab == "ab":
         ab = True
 
     for x in f:
@@ -198,4 +198,6 @@ def read_input(file):
     print(datetime.now() - startTime)
 
 
-read_input("test_case/input1.txt")
+# non-working ab inputs: 2,6
+read_input("test_case/input2.txt")
+
